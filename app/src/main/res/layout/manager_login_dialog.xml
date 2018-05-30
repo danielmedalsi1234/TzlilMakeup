@@ -7,12 +7,12 @@
     >
 
     <LinearLayout
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/mackeup_backgroung"
+        android:background="@color/grey"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        >
 
         <TextView
             android:id="@+id/lblTittleManager"
@@ -51,7 +51,7 @@
             android:password="true"
             android:hint="Enter Password"
             android:textAllCaps="false"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="start"
             />
 
@@ -59,7 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="20dp">
 
             <Button
                 android:id="@+id/BtnCancel"
@@ -70,6 +71,7 @@
                 android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:text="Cancel"
+                android:background="@color/grey"
                 android:drawableLeft="@drawable/ic_cancel_black_24dp"
                 android:textAllCaps="false"
                 android:layout_gravity="start"
@@ -84,6 +86,7 @@
                 android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:text="OK"
+                android:background="@color/grey"
                 android:textAllCaps="false"
                 android:layout_marginLeft="10dp"
                 />

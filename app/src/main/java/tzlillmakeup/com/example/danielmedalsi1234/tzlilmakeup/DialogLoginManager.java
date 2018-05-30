@@ -13,11 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DialogLoginManager extends DialogFragment {
 
     private EditText txtNameManager,txtPassword;
     private Button BtnOk,BtnCancel;
     private TextView lblTittle;
+
+
 
     @Nullable
     @Override
@@ -40,17 +45,28 @@ public class DialogLoginManager extends DialogFragment {
         BtnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String name_tournament = txtNameManager.getText().toString();
                 String password = txtPassword.getText().toString();
 
-                if (name_tournament.equals("tzlilKatan") && password.equals("tzlil1234")){
-                    startActivity(new Intent(view.getContext(),ListOfItems.class));
+                if (name_tournament.equals("1") && password.equals("1")){
+                    AppDataBaseContact db;
+                    List<Contact> listData = new ArrayList<>();
+                    db = Room.databaseBuilder(view.getContext(), AppDataBaseContact.class, "contact")
+                            .allowMainThreadQueries()
+                            .fallbackToDestructiveMigration()
+                            .build();
+                    listData = db.contactDao().getAll();
+                    if (listData.isEmpty()){
+                        Toast.makeText(view.getContext(),"The list is Empty!",Toast.LENGTH_SHORT).show();
+                    }else {
+                        startActivity(new Intent(view.getContext(),PriceOffersList.class));
+                    }
                 }
                 else {
                     Toast.makeText(view.getContext(), "Manger or Password incorrect",
                             Toast.LENGTH_LONG).show();
                 }
+
             }
         });
         return view;

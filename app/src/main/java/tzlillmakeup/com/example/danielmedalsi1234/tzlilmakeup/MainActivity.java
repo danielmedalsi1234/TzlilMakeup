@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn_prices = findViewById(R.id.btn_prices);
-        BtnList = findViewById(R.id.btn_sendDetails);
+        BtnList = findViewById(R.id.btn_list);
         btn_ManagerLogin = findViewById(R.id.btn_login_manager);
 
         btn_ManagerLogin.setOnClickListener(new View.OnClickListener() {
@@ -31,17 +31,19 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setCancelable(true);
             }
         });
+        BtnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, ListOfItems.class);
+                    startActivity(intent);
+
+            }
+        });
+        btn_prices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,NewOffersPrice.class));
+            }
+        });
     }
-
-
-    public void onClickPrices(View view) {
-        Intent intent = new Intent(MainActivity.this,Prices.class);
-        startActivity(intent);
-    }
-
-    public void onClickList(View view) {
-        Intent intent = new Intent(MainActivity.this,ListOfItems.class);
-        startActivity(intent);
-    }
-
 }

@@ -2,6 +2,7 @@ package tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -12,37 +13,41 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "contact")
 public class Contact {
 
-    @PrimaryKey
-    @NonNull
-    public String _name;
-
-    @ColumnInfo
-    public int _phone_number;
-
-    public Contact(String _name, int _phone_number) {
-        this._name = _name;
-        this._phone_number = _phone_number;
+    public Contact(String fullName,String phoneNumber) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
     }
 
-    // getting name
-    public String getName() {
-        return this._name;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "fullName")
+    public String fullName;
+
+    @ColumnInfo(name = "phone_number")
+    public String phoneNumber;
+
+    public String get_name() {
+        return fullName;
     }
 
-    // setting name
-    public void setName(String name) {
-        this._name = name;
+    public void set_name(String _name) {
+        this.fullName = _name;
     }
 
-    // getting phone number
-    public int getPhoneNumber() {
-        return this._phone_number;
+    public String get_phone_number() {
+        return phoneNumber;
     }
 
-    // setting phone number
-    public void setPhoneNumber(int phone_number) {
-        this._phone_number = phone_number;
+    public void set_phone_number(String _phone_number) {
+        this.phoneNumber = _phone_number;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }

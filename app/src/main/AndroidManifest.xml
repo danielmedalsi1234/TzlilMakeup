@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/app_name" android:name=".Prices"/>
+        <activity android:label="@string/app_name" android:name=".NewOffersPrice"/>
+        <activity android:label="@string/app_name" android:name=".PriceOffersList"/>
         <activity android:label="@string/app_name" android:name=".ListOfItems"/>
 
     </application>

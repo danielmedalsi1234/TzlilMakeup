@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/lib/tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup.PriceOffersList"
+    android:id="@+id/ListOffersPrices"
+    android:orientation="vertical">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabDelete"
+        app:fabCustomSize="70dp"
+        android:src="@drawable/ic_delete_sweep_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        />
+
+    <include layout="@layout/content_main"></include>
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

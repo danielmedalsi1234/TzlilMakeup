@@ -18,10 +18,13 @@ public interface ContactDao {
     Cursor getCursorAll();
 
     @Insert
-    void insertAll(Contact... users);
+    void insertAll(Contact... contacts);
 
     @Delete
-    void delete(Contact user);
+    void delete(Contact... contact);
+
+    @Query("DELETE FROM contact")
+    void deleteAll();
 
 
 
