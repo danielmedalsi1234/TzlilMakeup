@@ -4,18 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/chat_color"
     >
 
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_chat_black_24dp"
+        android:layout_gravity="center"
+        />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat App"/>
+        android:text="Online"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:textStyle="bold"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/lstMessages"/>
+        android:id="@+id/lstMessages" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +36,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnSend"
         android:onClick="btnSend"
-        android:text="Send"/>
+        android:textColor="@color/White"
+        android:background="@color/grey"
+        android:text="Send" />
 
 </LinearLayout>

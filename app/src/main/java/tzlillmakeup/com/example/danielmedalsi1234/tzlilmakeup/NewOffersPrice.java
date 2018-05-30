@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 public class NewOffersPrice extends Activity {
 
-
     EditText txtName;
     TextView lblName;
     EditText txtPhone;
@@ -35,7 +34,6 @@ public class NewOffersPrice extends Activity {
         txtPhone = findViewById(R.id.txt_phone);
         lblPhone = findViewById(R.id.lbl_phone);
         BtnDone = findViewById(R.id.btn_done);
-
 
         BtnDone.setOnClickListener(new View.OnClickListener() {
             @Override

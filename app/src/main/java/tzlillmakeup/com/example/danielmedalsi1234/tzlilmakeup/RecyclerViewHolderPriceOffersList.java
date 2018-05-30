@@ -80,12 +80,10 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolderPriceOffers
                 String inputName = listData.get(position).get_name();
                 String inputPhone = listData.get(position).get_phone_number();
 
-
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
                 callIntent.setData(Uri.parse("tel:" + listData.get(position).phoneNumber));
                 context.startActivity(callIntent);
                 Log.d(TAG,"OnBindWork");
-
             }
         });
     }

@@ -27,7 +27,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="הצעות מחיר"
+        android:text="קבל הצעת מחיר"
         android:id="@+id/btn_prices"
         android:textSize="37px"
         android:textStyle="bold"
