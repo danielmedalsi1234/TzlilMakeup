@@ -2,9 +2,12 @@ package tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup;
 
 import android.app.DialogFragment;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,7 @@ public class DialogLoginManager extends DialogFragment {
     private EditText txtNameManager,txtPassword;
     private Button BtnOk,BtnCancel;
     private TextView lblTittle;
+    public static final String TAG = "DialogLoginManager";
 
 
 
@@ -69,8 +73,10 @@ public class DialogLoginManager extends DialogFragment {
 
             }
         });
+
         return view;
     }
+
 
 
 

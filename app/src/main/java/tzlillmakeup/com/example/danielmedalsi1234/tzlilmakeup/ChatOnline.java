@@ -1,14 +1,19 @@
 package tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -20,7 +25,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.LogRecord;
 
 public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMessageListener {
 
@@ -32,6 +36,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
     CheckMessagesThread checkMessagesThread;
     Handler handler = new Handler();
     private List<String> messages;
+    private List<String> emptyArray;
     private ArrayAdapter<String> adapter;
 
     @Override
@@ -42,6 +47,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         lstMessages = findViewById(R.id.lstMessages);
         btnSend = findViewById(R.id.btnSend);
         messages = new ArrayList<>();
+        emptyArray = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, messages);
         lstMessages.setAdapter(adapter);
 
@@ -57,6 +63,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         super.onResume();
         checkMessagesThread = new CheckMessagesThread(this, messages);
         checkMessagesThread.start();
+
     }
 
     @Override
@@ -71,7 +78,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         String message = txtMessage.getText().toString();
         if(message.isEmpty()){
             enableUI(true);
-            Toast.makeText(this, "must write something...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "השדה ריק!", Toast.LENGTH_SHORT).show();
             return;
         }
         new AsyncTask<String, Void, Boolean>(){
@@ -138,9 +145,8 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
             @Override
             public void run() {
                 adapter.notifyDataSetChanged();
-                messages.remove(2);
             }
         });
-
     }
+
 }

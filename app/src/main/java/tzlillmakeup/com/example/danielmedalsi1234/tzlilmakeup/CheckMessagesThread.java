@@ -70,7 +70,6 @@ public class CheckMessagesThread extends Thread {
 
             }
         }
-
     }
 
     public void stopChecking(){
