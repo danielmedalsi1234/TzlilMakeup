@@ -1,6 +1,8 @@
 package tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -72,26 +74,17 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolderPriceOffers
         holder.txt_descriptionName.setText(listData.get(position).get_name());
         holder.txt_descriptionPhone.setText(listData.get(position).get_phone_number());
 
-        //todo holder.txt_title.setText(listData.get(position).getFirstName());
-        Log.d(TAG,"OnBindWork");
-
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void OnClick(View view, int position, boolean isLongClick) {
                 String inputName = listData.get(position).get_name();
                 String inputPhone = listData.get(position).get_phone_number();
 
-                /*dialogMyTournament = new DialogMyTournament();
-                User user = listData.get(position);
-                dialogMyTournament.setUserPosition(user);
-                DialogEnterTournament dialogEnterTournament = new DialogEnterTournament();
-                dialogEnterTournament.setPasswordOfPosition(listData.get(position).getPassword());
 
-                DialogMyTournament dialog = new DialogMyTournament();
-                FragmentManager manager = ((Activity) context).getFragmentManager();
-                dialog.show(manager,"DialogMyTournament");
-                dialog.setCancelable(true);
-                dialog.setGetNamePosition(input);*/
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:" + listData.get(position).phoneNumber));
+                context.startActivity(callIntent);
+                Log.d(TAG,"OnBindWork");
 
             }
         });

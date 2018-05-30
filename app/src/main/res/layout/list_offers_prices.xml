@@ -5,8 +5,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/lib/tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup.PriceOffersList"
     android:id="@+id/ListOffersPrices"
+    android:background="@color/purple"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מחק הכל"
+        android:textSize="20sp"
+        android:layout_marginLeft="263dp"
+        android:layout_marginTop="10dp"/>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabDelete"
         app:fabCustomSize="70dp"
