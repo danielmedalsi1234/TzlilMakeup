@@ -3,6 +3,7 @@ package tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +20,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
 public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMessageListener {
@@ -30,7 +30,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
     ListView lstMessages;
     Button btnSend;
     CheckMessagesThread checkMessagesThread;
-    Handler handler;
+    Handler handler = new Handler();
     private List<String> messages;
     private ArrayAdapter<String> adapter;
 
@@ -44,6 +44,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         messages = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, messages);
         lstMessages.setAdapter(adapter);
+
     }
 
     private void enableUI(boolean enabled){
@@ -131,14 +132,15 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
             }
         }.execute(message);
     }
-
     @Override
     public void onNewMessage() {
-        new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 adapter.notifyDataSetChanged();
+                messages.remove(2);
             }
-        };
+        });
+
     }
 }
