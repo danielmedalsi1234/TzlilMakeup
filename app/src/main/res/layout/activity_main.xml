@@ -42,6 +42,16 @@
         android:textSize="37px"
         android:textStyle="bold"
         style="?android:attr/buttonStyleInset"/>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="ייעוץ אונליין"
+            android:id="@+id/btn_login_chat"
+            android:textSize="37px"
+            android:textStyle="bold"
+            android:scrollbarStyle="insideInset"
+            style="?android:attr/buttonStyleInset"
+            />
     <Button
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -52,6 +62,7 @@
         android:scrollbarStyle="insideInset"
         style="?android:attr/buttonStyleInset"
         />
+
     </LinearLayout>
 
 </LinearLayout>

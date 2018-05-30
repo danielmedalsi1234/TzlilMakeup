@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button BtnList;
     private Button btn_prices;
     private Button btn_ManagerLogin;
+    private Button btn_chat;
     public static final String TAG = "MainActivity";
 
     @Override
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         btn_prices = findViewById(R.id.btn_prices);
         BtnList = findViewById(R.id.btn_list);
         btn_ManagerLogin = findViewById(R.id.btn_login_manager);
+        btn_chat = findViewById(R.id.btn_login_chat);
 
         btn_ManagerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,NewOffersPrice.class));
+            }
+        });
+        btn_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ChatOnline.class));
             }
         });
     }
