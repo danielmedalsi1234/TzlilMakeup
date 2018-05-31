@@ -3,6 +3,7 @@ package tzlillmakeup.com.example.danielmedalsi1234.tzlilmakeup;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import java.util.List;
 
 public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMessageListener {
 
+    public static final String TAG ="ChatOnline";
     //public static final String BASE_URL = "http://146.148.28.47/Chat_Server/ChatServlet";
     public static final String BASE_URL = "http://10.0.2.2:8080/ChatServlet";
     EditText txtMessage;
@@ -36,7 +38,6 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
     CheckMessagesThread checkMessagesThread;
     Handler handler = new Handler();
     private List<String> messages;
-    private List<String> emptyArray;
     private ArrayAdapter<String> adapter;
 
     @Override
@@ -47,7 +48,6 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         lstMessages = findViewById(R.id.lstMessages);
         btnSend = findViewById(R.id.btnSend);
         messages = new ArrayList<>();
-        emptyArray = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, messages);
         lstMessages.setAdapter(adapter);
 
@@ -105,7 +105,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
                     int actuallyRead = inputStream.read(buffer);
                     String response = new String(buffer, 0, actuallyRead);
                     //close connection
-                    if(response.equals("ok"))
+                    if(response.equals("Successfully!!"))
                         return true;
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -129,6 +129,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
             protected void onPostExecute(Boolean success) {
                 enableUI(true);
                 if(success){
+                    onNewMessage();
                     txtMessage.setText("");
                     txtMessage.requestFocus();
 
@@ -144,6 +145,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         handler.post(new Runnable() {
             @Override
             public void run() {
+                Log.d(TAG,"New Message");
                 adapter.notifyDataSetChanged();
             }
         });

@@ -70,14 +70,9 @@ public class DialogLoginManager extends DialogFragment {
                     Toast.makeText(view.getContext(), "Manger or Password incorrect",
                             Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 
         return view;
     }
-
-
-
-
 }
