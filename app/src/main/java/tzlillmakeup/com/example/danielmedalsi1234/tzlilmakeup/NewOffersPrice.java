@@ -22,7 +22,7 @@ public class NewOffersPrice extends Activity {
     EditText txtPhone;
     TextView lblPhone;
     Button BtnDone;
-    AppDataBaseContact db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class NewOffersPrice extends Activity {
             public void onClick(View view) {
                 String nameEntery = txtName.getText().toString();
                 String phoneEntery = txtPhone.getText().toString();
-                if (txtPhone.length() != 0){
+                if (txtPhone.length() != 0 && !txtName.getText().toString().equals("")){
                     AppDataBaseContact db = Room.databaseBuilder(NewOffersPrice.this.getApplicationContext(),AppDataBaseContact.class,"contact")
                             .allowMainThreadQueries()
                             .fallbackToDestructiveMigration()

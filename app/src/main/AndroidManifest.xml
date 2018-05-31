@@ -21,6 +21,8 @@
         <activity android:label="@string/app_name" android:name=".NewOffersPrice"/>
         <activity android:label="@string/app_name" android:name=".ListOfItems"/>
         <activity android:label="@string/app_name" android:name=".ChatOnline"/>
+        <activity android:label="@string/app_name" android:name=".PriceOffersList"/>
+
 
     </application>
 

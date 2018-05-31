@@ -129,9 +129,9 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
             protected void onPostExecute(Boolean success) {
                 enableUI(true);
                 if(success){
-                    onNewMessage();
                     txtMessage.setText("");
                     txtMessage.requestFocus();
+
 
                 }else{
                     Toast.makeText(ChatOnline.this, "error!", Toast.LENGTH_SHORT).show();
@@ -141,11 +141,10 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         }.execute(message);
     }
     @Override
-    public void onNewMessage() {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                public void onNewMessage() {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG,"New Message");
                 adapter.notifyDataSetChanged();
             }
         });

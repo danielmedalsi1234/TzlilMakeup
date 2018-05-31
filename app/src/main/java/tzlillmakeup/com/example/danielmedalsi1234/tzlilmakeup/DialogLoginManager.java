@@ -62,6 +62,7 @@ public class DialogLoginManager extends DialogFragment {
                     listData = db.contactDao().getAll();
                     if (listData.isEmpty()){
                         Toast.makeText(view.getContext(),"The list is Empty!",Toast.LENGTH_SHORT).show();
+                        getDialog().dismiss();
                     }else {
                         startActivity(new Intent(view.getContext(),PriceOffersList.class));
                     }
