@@ -46,7 +46,7 @@ public class RecyclerViewHolderPriceOffersList extends RecyclerView.ViewHolder i
         itemClickListener.OnClick(v,getAdapterPosition(),true);
         return true;
     }
-}//Adapter------------------------------
+}//Adapter-------------------------------
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolderPriceOffersList>  {
     private final static String TAG = null;
     private List<Contact> listData = new ArrayList<>();
