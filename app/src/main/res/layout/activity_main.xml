@@ -24,24 +24,24 @@
         android:gravity="bottom"
         android:orientation="vertical"
         >
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="קבל הצעת מחיר"
-        android:id="@+id/btn_prices"
-        android:textSize="37px"
-        android:textStyle="bold"
-        android:scrollbarStyle="insideInset"
-        style="?android:attr/buttonStyleInset"
-      />
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="רשימה"
-        android:id="@+id/btn_list"
-        android:textSize="37px"
-        android:textStyle="bold"
-        style="?android:attr/buttonStyleInset"/>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="קבל הצעת מחיר"
+            android:id="@+id/btn_prices"
+            android:textSize="37px"
+            android:textStyle="bold"
+            android:scrollbarStyle="insideInset"
+            style="?android:attr/buttonStyleInset"
+            />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="רשימת מוצרים"
+            android:id="@+id/btn_list"
+            android:textSize="37px"
+            android:textStyle="bold"
+            style="?android:attr/buttonStyleInset"/>
         <Button
             android:layout_width="150dp"
             android:layout_height="50dp"
@@ -62,16 +62,16 @@
             android:scrollbarStyle="insideInset"
             style="?android:attr/buttonStyleInset"
             />
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="כניסת מנהל"
-        android:id="@+id/btn_login_manager"
-        android:textSize="37px"
-        android:textStyle="bold"
-        android:scrollbarStyle="insideInset"
-        style="?android:attr/buttonStyleInset"
-        />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="כניסת מנהל"
+            android:id="@+id/btn_login_manager"
+            android:textSize="37px"
+            android:textStyle="bold"
+            android:scrollbarStyle="insideInset"
+            style="?android:attr/buttonStyleInset"
+            />
 
 
     </LinearLayout>
