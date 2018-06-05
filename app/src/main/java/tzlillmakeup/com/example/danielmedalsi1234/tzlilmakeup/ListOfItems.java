@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,11 +24,14 @@ import java.util.List;
 
 public class ListOfItems extends Activity {
     public static final String TAG = "ListOfItems";
-    ListView listView;
-    List<String> listItem;
-    Button BtnAddItem,BtnOkItem;
-    EditText txtAddNewItem;
-    private EditText input1,input2;
+    private ListView listView;
+    private List<String> listItem;
+    private Button BtnAddItem,BtnOkItem,BtnDelete;
+    private EditText txtAddNewItem;
+    private ArrayAdapter adapter;
+    private EditText input1;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,22 @@ public class ListOfItems extends Activity {
         BtnAddItem = findViewById(R.id.BtnAddNewItem);
         BtnOkItem = findViewById(R.id.BtnOkAddItem);
         txtAddNewItem = findViewById(R.id.txtAddNewItem);
+        BtnDelete = findViewById(R.id.BtnDelete);
         listItem = new ArrayList<>();
+        adapter  = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, listItem);
+        listView.setAdapter(adapter);
+
+        LoadList();
+        AddItem();
+        OkItem();
+        DeleteAllList();
+    }
+
+    public void LoadList(){
         SharedPreferences preferences = getSharedPreferences("PREFS",0);
         String items = preferences.getString("item","");
-        String[] itemsArray = items.split(",");
+        final String[] itemsArray = items.split(",");
         List<String> ItemList = new ArrayList<>();
         for (int i=0;i<itemsArray.length;i++){
             listItem.add(itemsArray[i]);
@@ -50,6 +64,35 @@ public class ListOfItems extends Activity {
         for (int i=0;i<ItemList.size();i++){
             Log.d("listItem",ItemList.get(i));
         }
+    }
+    public void OkItem(){
+        BtnOkItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = txtAddNewItem.getText().toString();
+                listItem.add(input.toString());
+                Toast.makeText(ListOfItems.this,"פריט התווסף!!",
+                        Toast.LENGTH_SHORT).show();
+                txtAddNewItem.setVisibility(View.INVISIBLE);
+                BtnOkItem.setVisibility(View.INVISIBLE);
+                BtnDelete.setVisibility(View.INVISIBLE);
+                txtAddNewItem.setText("");
+                refreshAdapterThread();
+
+
+                StringBuilder stringBuilder = new StringBuilder();
+                for(String item : listItem){
+                    stringBuilder.append(item);
+                    stringBuilder.append(",");
+                }
+                preferences = getSharedPreferences("PREFS",0);
+                editor = preferences.edit();
+                editor.putString("item",stringBuilder.toString());
+                editor.commit();
+            }
+        });
+    }
+    public void AddItem(){
         BtnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -66,6 +109,7 @@ public class ListOfItems extends Activity {
                         if (input1.getText().toString().equals("1")) {
                             txtAddNewItem.setVisibility(View.VISIBLE);
                             BtnOkItem.setVisibility(View.VISIBLE);
+                            BtnDelete.setVisibility(View.VISIBLE);
 
                         }
                         else
@@ -84,35 +128,44 @@ public class ListOfItems extends Activity {
 
             }
         });
-        BtnOkItem.setOnClickListener(new View.OnClickListener() {
+    }
+    public void DeleteAllList(){
+        BtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = txtAddNewItem.getText().toString();
-                listItem.add(input.toString());
-                Toast.makeText(ListOfItems.this,"פריט התווסף!",
-                        Toast.LENGTH_SHORT).show();
-                txtAddNewItem.setVisibility(View.INVISIBLE);
-                BtnOkItem.setVisibility(View.INVISIBLE);
-                txtAddNewItem.setText("");
-
-                StringBuilder stringBuilder = new StringBuilder();
-                for(String item : listItem){
-                    stringBuilder.append(item);
-                    stringBuilder.append(",");
-                }
-                SharedPreferences preferences = getSharedPreferences("PREFS",0);
-                SharedPreferences.Editor editor =preferences.edit();
-                editor.putString("item",stringBuilder.toString());
+                listItem.clear();
+                preferences = getSharedPreferences("PREFS",0);
+                editor = preferences.edit();
+                editor.clear();
                 editor.commit();
+
+                refreshAdapterThread();
             }
         });
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listItem);
-        listView.setAdapter(adapter);
-
+    }
+    void refreshAdapterThread()
+    {
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                refreshList();
+            }
+        }).start();
     }
 
-
-
+    void refreshList()
+    {
+        runOnUiThread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
 
 
 
