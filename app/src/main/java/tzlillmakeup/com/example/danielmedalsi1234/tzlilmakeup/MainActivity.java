@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         btn_chat = findViewById(R.id.btn_login_chat);
         BtnSendEmail = findViewById(R.id.btn_send_email);
 
+
+
+
         btn_ManagerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

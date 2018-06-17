@@ -28,6 +28,13 @@
             android:id="@+id/BtnOkAddItem"
             android:text="אישור"
             android:visibility="invisible"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detelte spec item"
+            android:id="@+id/delOneItem"
+            android:textAllCaps="false"
+            />
 
         <Button
             android:layout_width="wrap_content"

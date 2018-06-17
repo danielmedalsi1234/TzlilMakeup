@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -31,7 +33,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
 
     public static final String TAG ="ChatOnline";
     //public static final String BASE_URL = "http://146.148.28.47/Chat_Server/ChatServlet";
-    public static final String BASE_URL = "http://10.0.2.2:8080/ChatServlet";
+    public static final String BASE_URL = "http://10.0.2.2:8080/onlineChatServlet";
     EditText txtMessage;
     ListView lstMessages;
     Button btnSend;
@@ -39,6 +41,10 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
     Handler handler = new Handler();
     private List<String> messages;
     private ArrayAdapter<String> adapter;
+
+    public List<String> getMessages() {
+        return messages;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +100,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
                 HttpURLConnection connection = null;
                 InputStream inputStream = null;
                 try{
-                    url = new URL(BASE_URL + "?set_message=" +message);
+                    url = new URL(BASE_URL +"?set_message="+ message);
                     connection = (HttpURLConnection)url.openConnection();
                     connection.setRequestMethod("GET");
                     connection.setUseCaches(false);
@@ -105,7 +111,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
                     int actuallyRead = inputStream.read(buffer);
                     String response = new String(buffer, 0, actuallyRead);
                     //close connection
-                    if(response.equals("Successfully!!"))
+                    if(response.equals("successfully"))
                         return true;
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -141,7 +147,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
         }.execute(message);
     }
     @Override
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                public void onNewMessage() {
+    public void onNewMessage() {
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -149,5 +155,7 @@ public class ChatOnline extends Activity implements CheckMessagesThread.OnNewMes
             }
         });
     }
+
+
 
 }

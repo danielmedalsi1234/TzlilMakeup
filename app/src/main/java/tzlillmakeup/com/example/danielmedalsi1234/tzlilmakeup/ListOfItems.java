@@ -26,7 +26,7 @@ public class ListOfItems extends Activity {
     public static final String TAG = "ListOfItems";
     private ListView listView;
     private List<String> listItem;
-    private Button BtnAddItem,BtnOkItem,BtnDelete;
+    private Button BtnAddItem,BtnOkItem,BtnDelete,BtnDeleteSpecItem;
     private EditText txtAddNewItem;
     private ArrayAdapter adapter;
     private EditText input1;
@@ -42,6 +42,7 @@ public class ListOfItems extends Activity {
         BtnOkItem = findViewById(R.id.BtnOkAddItem);
         txtAddNewItem = findViewById(R.id.txtAddNewItem);
         BtnDelete = findViewById(R.id.BtnDelete);
+        BtnDeleteSpecItem = findViewById(R.id.delOneItem);
         listItem = new ArrayList<>();
         adapter  = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, listItem);
@@ -110,7 +111,6 @@ public class ListOfItems extends Activity {
                             txtAddNewItem.setVisibility(View.VISIBLE);
                             BtnOkItem.setVisibility(View.VISIBLE);
                             BtnDelete.setVisibility(View.VISIBLE);
-
                         }
                         else
                             Toast.makeText(ListOfItems.this,"סיסמה שגויה",
@@ -140,6 +140,15 @@ public class ListOfItems extends Activity {
                 editor.commit();
 
                 refreshAdapterThread();
+            }
+        });
+    }
+    public void DeleteSpecificItem(){
+        BtnDeleteSpecItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo......
+                //listItem.remove()
             }
         });
     }
